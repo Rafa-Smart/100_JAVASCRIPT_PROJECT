@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detektor Jenis Segitiga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4323d3;
+            text-align: center;
+            border-bottom: 2px solid #1a1ad1;
+            padding-bottom: 10px;
+        }
+        .syarat {
+            background-color: #fff8e1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .inputan {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4f24cd;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #5d49f5;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        .segitiga {
+            background-color: #231eb1;
+            color: #2e7d32;
+        }
+        .bukan-segitiga {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PENGECEK JENIS SEGITIGA</h1>
+        
+        <div class="syarat">
+            <strong>Syarat segitiga:</strong>
+            <ol>
+                <li>a + b > c</li>
+                <li>a + c > b</li>
+                <li>b + c > a</li>
+            </ol>
+            <p>kalo ga memenuhi syarat di atas, maka bukan segitiga!</p>
+        </div>
+        
+        <div class="inputan">
+            <label for="sisiA">Masukkan sisi a:</label>
+            <input type="number" id="sisiA" placeholder="Masukkan panjang sisi a" >
+        </div>
+        
+        <div class="inputan">
+            <label for="sisiB">Masukkan sisi b:</label>
+            <input type="number" id="sisiB" placeholder="Masukkan panjang sisi b" >
+        </div>
+        
+        <div class="inputan">
+            <label for="sisiC">Masukkan sisi terpanjang c:</label>
+            <input type="number" id="sisiC" placeholder="Masukkan panjang sisi c">
+        </div>
+        
+        <button onclick="cekSegitiga()">Cek Jenis Segitiga</button>
+        
+        <div id="hasil" class="result"></div>
+        <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+            Dibuat pada 07/10/2024 oleh Rafa Khadafi
+        </div>
+    </div>
+
+    <script>
+        function cekSegitiga() {
+            // Ambil nilai input
+            const a = parseFloat(document.getElementById('sisiA').value);
+            const b = parseFloat(document.getElementById('sisiB').value);
+            const c = parseFloat(document.getElementById('sisiC').value);
+            
+            // disini kita cek, kalo misalkan semua kondisi ini salah satunya ad ayang benar, maka akan dijalankan alertnya, makanya semua inptan disini itu harus benar, dan tidka ada yang null 
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a <= 0 || b <= 0 || c <= 0) {
+                alert("Masukkan angka positif");
+                return;
+            }
+            
+
+            const hasilDiv = document.getElementById('hasil');
+            
+            if (a + b <= c || a + c <= b || b + c <= a) {
+                hasilDiv.className = "result bukan-segitiga";
+                hasilDiv.textContent = "Ini BUKAN segitiga!";
+                hasilDiv.style.display = 'block';
+                return;
+            }
+            
+
+            const aKuadrat = a * a;
+            const bKuadrat = b * b;
+            const cKuadrat = c * c;
+            
+            hasilDiv.className = "result segitiga";
+            
+            if (aKuadrat + bKuadrat === cKuadrat) {
+                hasilDiv.textContent = "Ini adalah segitiga siku-siku";
+            } else if (aKuadrat + bKuadrat > cKuadrat) {
+                hasilDiv.textContent = "Ini adalah segitiga lancip";
+            } else {
+                hasilDiv.textContent = "Ini adalah segitiga tumpul";
+            }
+            
+            hasilDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huruf Identifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            width: 50px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #302c9c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            min-height: 30px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Penentu Jenis Huruf</h1>
+        <p>Masukkan sebuah huruf dari A - Z:</p>
+        <input type="text" id="hurufInput" maxlength="1" placeholder="A-Z">
+        <button type="button" id="button">Periksa</button>
+        <div id="result"></div>
+    </div>
+    
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px;">
+        Dibuat pada 23/04/2025 oleh Rafa Khadafi
+    </div>
+
+    <script>
+
+        const button = document.getElementById("button")
+        button.addEventListener("click", () => {
+            cekHuruf();
+        })
+        function cekHuruf() {
+
+            document.getElementById('result').innerHTML = '';
+            
+
+            const input = document.getElementById('hurufInput').value.toLowerCase();
+            const resultDiv = document.getElementById('result');
+            
+
+            if (input.length !== 1) {
+                resultDiv.innerHTML = 'masukin cuma 1 huruf aje';
+                resultDiv.style.color = 'red';
+                return;
+            }
+            
+            const charCode = input.charCodeAt(0);
+            if (!((charCode >= 97 && charCode <= 122))) { // a-z
+                resultDiv.innerHTML = `"${input}" bukan huruf`;
+                resultDiv.style.color = 'red';
+                return;
+            }
+            
+            // ini buat array yang isinya konsonan dan vokal, yang nanti bisa di cek
+            const vokal = ['a', 'i', 'u', 'e', 'o'];
+            const konsonan = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 
+                            'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'];
+            
+            if (vokal.includes(input)) {
+                resultDiv.innerHTML = `"${input}" merupakan huruf vokal`;
+                resultDiv.style.color = 'green';
+            } else if (konsonan.includes(input)) {
+                resultDiv.innerHTML = `"${input}" merupakan huruf konsonan`;
+                resultDiv.style.color = 'blue';
+            } else {
+               
+                resultDiv.innerHTML = `"${input}" bukan huruf yang dikenali`;
+                resultDiv.style.color = 'red';
+            }
+        }
+        
+        document.getElementById('hurufInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                checkHuruf();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menentukan Bulan</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>PROGRAM MENENTUKAN BULAN</h1>
+        <div class="divider"></div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Bulan</th>
+                    <th>Angka</th>
+                </tr>
+            </thead>
+            <tbody id="monthTable">
+            </tbody>
+        </table>
+        
+        <p>Masukkan angka sesuai bulan (1-12):</p>
+        <input type="number" id="monthInput" min="1" max="12" placeholder="1-12">
+        <button onclick="checkMonth()">Tentukan Bulan</button>
+        
+        <div id="result"></div>
+        
+        <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+            Dibuat pada 07/10/2024 oleh Rafa Khadafi
+        </div>
+    </div>
+
+    <script>
+        // array yang berisi data bulan
+        const months = [
+            { name: "Januari", number: 1 },
+            { name: "Februari", number: 2 },
+            { name: "Maret", number: 3 },
+            { name: "April", number: 4 },
+            { name: "Mei", number: 5 },
+            { name: "Juni", number: 6 },
+            { name: "Juli", number: 7 },
+            { name: "Agustus", number: 8 },
+            { name: "September", number: 9 },
+            { name: "Oktober", number: 10 },
+            { name: "November", number: 11 },
+            { name: "Desember", number: 12 }
+        ];
+
+        // disini lakukan perulangan pada setiap elemen yang ada pada array months,
+        // ini pake template literal
+        const monthTable = document.getElementById('monthTable');
+        months.forEach(month => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${month.name}</td>
+                <td>${month.number}</td>
+            `;
+            monthTable.appendChild(row);
+        });
+
+        function checkMonth() {
+            const input = document.getElementById('monthInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = '';
+            resultDiv.style.display = 'none';
+            
+            if (input === '' || isNaN(input)) {
+                resultDiv.innerHTML = 'masukkin aangka yang valid';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            const monthNumber = parseInt(input);
+            if (monthNumber < 1 || monthNumber > 12) {
+                resultDiv.innerHTML = 'masukkan angka antara 1-12';
+                resultDiv.style.display = 'block';
+                return;
+            }
+            
+            const selectedMonth = months.find(m => m.number === monthNumber);
+            
+            if (selectedMonth) {
+                resultDiv.innerHTML = `Angka yang kamu pilih adalah bulan: <strong>${selectedMonth.name}</strong>`;
+                resultDiv.style.display = 'block';
+            } else {
+                resultDiv.innerHTML = 'Bulan tidak ditemukan';
+                resultDiv.style.display = 'block';
+            }
+        }
+        
+        // disni kita buat, ketika mont input di lepas tombolnya, dan ketika user atau kmu mengetikan enter di keyboard
+        document.getElementById('monthInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                checkMonth();
+            }
+        });
+
+
+        // PENTING
+        // nanti buat lagi, tapi yang lebih simple, jadi arraynya nanit di cek, pake filter dan map, kalo angka, sama dengan this.angka, maka return nama bulannya sesuai dengan angkanya
+    </script>
+</body>
+</html>

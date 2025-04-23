@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Waktu Proyek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0c0260;
+            text-align: center;
+            border-bottom: 2px solid #5b21c7;
+            padding-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #6256e6;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #4a15d0;
+        }
+        .waktu-item {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f1f8e9;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MENGHITUNG WAKTU PROYEK</h1>
+        
+        <div class="input-group">
+            <label for="hariInput">Masukkan jumlah hari pengerjaan proyek:</label>
+            <input type="number" id="hariInput" placeholder="Masukkan jumlah hari">
+        </div>
+        
+        <button onclick="hitungWaktu()">Hitung Waktu</button>
+        
+        <div id="hasil" class="result">
+            <h3>Perkiraan Waktu Pengerjaan:</h3>
+            <div id="detailWaktu"></div>
+        </div>
+        <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+            Dibuat pada 07/10/2024 oleh Rafa Khadafi
+        </div>
+    </div>
+
+    <script>
+        function hitungWaktu() {
+
+            const hariInput = parseFloat(document.getElementById('hariInput').value);
+            
+
+            if (isNaN(hariInput) || hariInput < 0) {
+                alert("Masukkan angka yang valid dan positif!");
+                return;
+            }
+            
+
+            const TAHUN = 365;
+            const BULAN = 30;
+            const HARI = 1;
+            
+
+            let sisa = hariInput;
+            
+            const tahun = Math.floor(sisa / TAHUN);
+            sisa = sisa % TAHUN;
+            
+            const bulan = Math.floor(sisa / BULAN);
+            sisa = sisa % BULAN;
+            
+            const hari = Math.floor(sisa / HARI);
+            
+
+            let hasilHTML = `
+                <div class="waktu-item">Tahun: ${tahun}</div>
+                <div class="waktu-item">Bulan: ${bulan}</div>
+                <div class="waktu-item">Hari: ${hari}</div>
+            `;
+            
+            document.getElementById('detailWaktu').innerHTML = hasilHTML;
+        }
+    </script>
+</body>
+</html>

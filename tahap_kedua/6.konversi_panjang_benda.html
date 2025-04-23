@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konversi Panjang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: rgb(39, 1, 128);
+            text-align: center;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background: rgb(54, 56, 168);
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>KONVERSI PANJANG</h1>
+    
+    <div class="input-group">
+        <label>Masukkan panjang (meter):</label>
+        <input type="number" id="meterInput" placeholder="Contoh: 1.5">
+    </div>
+    
+    <button onclick="konversi()">Konversi</button>
+    
+    <div class="result" id="hasil">
+        <p>Inchi: <span id="inchi"></span></p>
+        <p>Kaki: <span id="kaki"></span></p>
+        <p>Yard: <span id="yard"></span></p>
+    </div>
+    
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 07/10/2024 oleh Rafa Khadafi
+    </div>
+
+    <script>
+        function konversi() {
+            const meter = parseFloat(document.getElementById("meterInput").value);
+            
+
+            const inchi = meter / 0.0254;
+            const kaki = meter / 0.3048;
+            const yard = meter / 0.9144;
+            
+
+            document.getElementById("inchi").textContent = inchi.toFixed(2);
+            document.getElementById("kaki").textContent = kaki.toFixed(2);
+            document.getElementById("yard").textContent = yard.toFixed(2);
+            
+
+            document.getElementById("hasil").style.display = "block";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piramida Persegi Panjang</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 30px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+        width: 80px;
+      }
+      button {
+        padding: 8px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Menghitung Piramida Persegi Panjang</h2>
+    <form>
+      <label for="panjang">Panjang Alas: </label>
+      <input type="number" id="panjang" step="any" /><br />
+      <label for="lebar">Lebar Alas: </label>
+      <input type="number" id="lebar" step="any" /><br />
+      <label for="tinggi">Tinggi Piramida: </label>
+      <input type="number" id="tinggi" step="any" /><br />
+      <button type="button" id="hitung">Hitung</button>
+    </form>
+    <h3>Hasil Perhitungan</h3>
+    <p>Volume: <span id="volume"></span></p>
+    <p>Luas Permukaan: <span id="luas"></span></p>
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px;">
+      Dibuat pada 23/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      document.getElementById("hitung").addEventListener("click", function () {
+        const p = parseFloat(document.getElementById("panjang").value);
+        const l = parseFloat(document.getElementById("lebar").value);
+        const t = parseFloat(document.getElementById("tinggi").value);
+
+        const volume = (1 / 3) * p * l * t;
+
+        // Hitung tinggi segitiga sisi
+        const tSisi1 = Math.sqrt(Math.pow(t, 2) + Math.pow(p / 2, 2));
+        const tSisi2 = Math.sqrt(Math.pow(t, 2) + Math.pow(l / 2, 2));
+        const luas = p * l + p * tSisi2 + l * tSisi1;
+
+        document.getElementById("volume").innerHTML =
+          volume.toFixed(2) + " cm³";
+        document.getElementById("luas").innerHTML = luas.toFixed(2) + " cm²";
+      });
+    </script>
+  </body>
+</html>

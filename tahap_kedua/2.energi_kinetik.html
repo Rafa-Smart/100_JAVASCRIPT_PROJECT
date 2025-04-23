@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energi Kinetik</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 30px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+        width: 80px;
+      }
+      button {
+        padding: 8px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Menghitung Energi Kinetik</h2>
+    <form>
+      <label for="massa">Massa (kg): </label>
+      <input type="number" id="massa" step="any" /><br />
+      <label for="kecepatan">Kecepatan (m/s): </label>
+      <input type="number" id="kecepatan" step="any" /><br />
+      <button type="button" id="hitung">Hitung</button>
+    </form>
+    <h3>Hasil Perhitungan</h3>
+    <p>Energi Kinetik: <span id="hasil"></span></p>
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px;">
+      Dibuat pada 23/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      document.getElementById("hitung").addEventListener("click", function () {
+        const massa = parseFloat(document.getElementById("massa").value);
+        const kecepatan = parseFloat(
+          document.getElementById("kecepatan").value
+        );
+        const energiKinetik = 0.5 * massa * Math.pow(kecepatan, 2);
+        document.getElementById("hasil").innerHTML =
+          energiKinetik.toFixed(2) + " Joule";
+      });
+    </script>
+  </body>
+</html>

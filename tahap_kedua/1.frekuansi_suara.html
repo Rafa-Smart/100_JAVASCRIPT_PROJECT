@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frekuensi</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 30px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+        width: 80px;
+      }
+      button {
+        padding: 8px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Menghitung Frekuensi</h2>
+    <form>
+      <label for="getaran">Jumlah Getaran: </label>
+      <input type="number" id="getaran" step="any" /><br />
+      <label for="waktu">Waktu (s): </label>
+      <input type="number" id="waktu" step="any" /><br />
+      <button type="button" id="hitung">Hitung</button>
+    </form>
+    <h3>Hasil Perhitungan</h3>
+    <p>Frekuensi: <span id="hasil"></span></p>
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px">
+      Dibuat pada 23/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+      document.getElementById("hitung").addEventListener("click", function () {
+        const getaran = parseFloat(document.getElementById("getaran").value);
+        const waktu = parseFloat(document.getElementById("waktu").value);
+        const frekuensi = getaran / waktu;
+        document.getElementById("hasil").innerHTML =
+          frekuensi.toFixed(2) + " Hz";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prisma Trapesium</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 30px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+        width: 80px;
+      }
+      button {
+        padding: 8px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Menghitung Prisma Trapesium</h2>
+    <form>
+      <label for="a">Sisi Sejajar 1: </label>
+      <input type="number" id="a" step="any" /><br />
+      <label for="b">Sisi Sejajar 2: </label>
+      <input type="number" id="b" step="any" /><br />
+      <label for="tinggiTrap">Tinggi Trapesium: </label>
+      <input type="number" id="tinggiTrap" step="any" /><br />
+      <label for="tinggiPrisma">Tinggi Prisma: </label>
+      <input type="number" id="tinggiPrisma" step="any" /><br />
+      <button type="button" id="hitung">Hitung</button>
+    </form>
+    <h3>Hasil Perhitungan</h3>
+    <p>Volume: <span id="volume"></span></p>
+    <p>Luas Permukaan: <span id="luas"></span></p>
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px;">
+      Dibuat pada 23/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      document.getElementById("hitung").addEventListener("click", function () {
+        const a = parseFloat(document.getElementById("a").value);
+        const b = parseFloat(document.getElementById("b").value);
+        const tTrap = parseFloat(document.getElementById("tinggiTrap").value);
+        const tPrisma = parseFloat(
+          document.getElementById("tinggiPrisma").value
+        );
+
+        const luasAlas = 0.5 * (a + b) * tTrap;
+        const volume = luasAlas * tPrisma;
+
+        // Hitung sisi miring trapesium (asumsi trapesium sama kaki)
+        const sisiMiring = Math.sqrt(
+          Math.pow((b - a) / 2, 2) + Math.pow(tTrap, 2)
+        );
+        const luas = (a + b + 2 * sisiMiring) * tPrisma + 2 * luasAlas;
+
+        document.getElementById("volume").innerHTML =
+          volume.toFixed(2) + " cm³";
+        document.getElementById("luas").innerHTML = luas.toFixed(2) + " cm²";
+      });
+    </script>
+  </body>
+</html>

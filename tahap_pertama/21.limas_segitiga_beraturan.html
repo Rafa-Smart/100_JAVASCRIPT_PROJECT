@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetrahedron</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 30px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+        width: 80px;
+      }
+      button {
+        padding: 8px 15px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Menghitung Tetrahedron</h2>
+    <form>
+      <label for="sisi">Panjang Sisi: </label>
+      <input type="number" id="sisi" step="any" /><br />
+      <button type="button" id="hitung">Hitung</button>
+    </form>
+    <h3>Hasil Perhitungan</h3>
+    <p>Volume: <span id="volume"></span></p>
+    <p>Luas Permukaan: <span id="luas"></span></p>
+    <div class="footer" style="color: #666; font-size: 12px; margin-top: 30px;">
+      Dibuat pada 23/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      document.getElementById("hitung").addEventListener("click", function () {
+        const s = parseFloat(document.getElementById("sisi").value);
+
+        const volume = Math.pow(s, 3) / (6 * Math.sqrt(2));
+        const luas = Math.sqrt(3) * Math.pow(s, 2);
+
+        document.getElementById("volume").innerHTML =
+          volume.toFixed(2) + " cm³";
+        document.getElementById("luas").innerHTML = luas.toFixed(2) + " cm²";
+      });
+    </script>
+  </body>
+</html>

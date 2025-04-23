@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Tukar Pecahan Uang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #19024e;
+            text-align: center;
+            border-bottom: 2px solid #3a1e75;
+            padding-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #131ccb;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3e1db5;
+        }
+        .pecahan {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f1f8e9;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PROGRAM TUKAR PECAHAN UANG</h1>
+        
+        <div class="input-group">
+            <label for="jumlahUang">Masukkan jumlah uang (Rp):</label>
+            <input type="number" id="jumlahUang" placeholder="Masukkan jumlah dalam rupiah">
+        </div>
+        
+        <button onclick="hitungPecahan()">Hitung Pecahan</button>
+        
+        <div id="hasil" class="result">
+            <h3>Hasil Pecahan Uang:</h3>
+            <div id="daftarPecahan"></div>
+        </div>
+        <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+            Dibuat pada 07/10/2024 oleh Rafa Khadafi
+        </div>
+    </div>
+
+    <script>
+        function hitungPecahan() {
+
+            const jumlahUang = parseInt(document.getElementById('jumlahUang').value);
+            
+
+            if (isNaN(jumlahUang) || jumlahUang < 0) {
+                alert("Masukkan angka yang valid dan positif!");
+                return;
+            }
+            
+
+            const pecahan = [
+                { nilai: 1000, nama: "Rp1.000" },
+                { nilai: 500, nama: "Rp500" },
+                { nilai: 100, nama: "Rp100" },
+                { nilai: 50, nama: "Rp50" },
+                { nilai: 25, nama: "Rp25" },
+                { nilai: 1, nama: "Rp1" }
+            ];
+            
+            let sisa = jumlahUang;
+            let hasilHTML = "";
+            
+
+            pecahan.forEach(item => {
+
+                // disini di cek, kalo misalkan user ngasih inputan 5000, berati, bakal di bagi sama item.nilai, nah kalo misalkan user ngirim 5000 berati, nanti 5000 ini akan di bagi dnegan seluruh nilai yang ada di item.nilai dan akan diuang sebnayak jumlah item di array pecahan 
+                const jumlah = Math.floor(sisa / item.nilai);
+
+                // bisa juga pake ini biar keluarnya saatu, kalo ada ini
+                // berati nanti variable sisa ini akna selalu diset menjadi yang terbaru
+                // sisa = sisa % item.nilai;
+                
+                if (jumlah > 0) {
+                    hasilHTML += `<div class="pecahan">${jumlah} lembar ${item.nama}</div>`;
+                }
+            });
+            
+            document.getElementById('daftarPecahan').innerHTML = hasilHTML || 
+                "<div class='pecahan'>Tidak ada pecahan yang bisa ditukar</div>";
+                // jadi kalo misalkan si hasilHTML, ini tidak aada isinya atau null, maka keluarkan output divnya ini
+        }
+    </script>
+</body>
+</html>
