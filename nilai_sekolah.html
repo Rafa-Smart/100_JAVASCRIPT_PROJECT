@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<style>
+    div {
+        display: block;
+    }
+</style>
+<body>
+    <form action="" name="nilai">
+        <div class="nilai">
+            <label for="pkn">Nilai PKN : </label>
+            <input type="text" placeholder="masukan nilai" id="pkn">
+        </div>
+        <div class="nilai">
+            <label for="mtk">Nilai MTK : </label>
+            <input type="text" placeholder="masukan nilai" id="mtk">
+        </div>
+        <div class="nilai">
+            <label for="inggris">Nilai inggris : </label>
+            <input type="text" placeholder="masukan nilai" id="inggris">
+        </div>
+        <button type="button" id="button"> Hitung</button>
+    </form>
+
+    <h3>
+        Jumlah Nilai : <span id="jml_nilai">0</span>
+    </h3>
+    <h3>
+        Rata-rata : <span id="Rata-rata">0</span>
+    </h3>
+    <h3>
+        Predikat : <span id="predikat">0</span>
+    </h3>
+    <h3>
+        status kelulusan : <span id="lulus">0</span>
+    </h3>
+    <h3>
+        keterangan : <span id="keterangan">0</span>
+    </h3>
+    <script>
+        const button = document.getElementById("button");
+        button.addEventListener("click", function () {
+        const pkn = document.getElementById("pkn").value;
+        const mtk = document.getElementById("mtk").value;
+        const inggris = document.getElementById("inggris").value;
+        const keterangan = document.getElementById("keterangan");
+        const predikat = document.getElementById("predikat");
+        const rata = document.getElementById("Rata-rata");
+        const jml = document.getElementById("jml_nilai");
+        const lulus = document.getElementById("lulus");
+
+        const total = parseFloat(pkn) + parseFloat(mtk) + parseFloat(inggris);
+        const keteranganHasil = total >= 85 ? "A" : total >= 70 ? "B" : total >= 60 ? "C" : "D";
+        const statusKelulusan = total >= 60 ? "Lulus" : "Tidak Lulus";
+
+        predikat.textContent = keteranganHasil;
+        jml.textContent = total;
+        lulus.textContent = statusKelulusan;
+        rata.textContent = (total / 3).toFixed(2);
+        keterangan.textContent = keteranganHasil;
+        });
+
+    </script>
+</body>
+</html>

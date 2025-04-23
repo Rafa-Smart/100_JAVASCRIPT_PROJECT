@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<style>
+    div {
+        display: block;
+    }
+</style>
+<body>
+
+    <form action="" name="nilai">
+        <div class="nilai">
+            <label for="pkn">Nilai PKN : </label>
+            <input type="text" placeholder="masukan nilai" id="pkn">
+        </div>
+        <div class="nilai">
+            <label for="mtk">Nilai MTK : </label>
+            <input type="text" placeholder="masukan nilai" id="mtk">
+        </div>
+        <div class="nilai">
+            <label for="inggris">Nilai inggris : </label>
+            <input type="text" placeholder="masukan nilai" id="inggris">
+        </div>
+        <button type="button" id="button"> Hitung</button>
+    </form>
+
+    <h3>
+        Jumlah Nilai : <span id="jml_nilai">0</span>
+    </h3>
+    <h3>
+        Rata-rata : <span id="Rata-rata">0</span>
+    </h3>
+    <h3>
+        Predikat : <span id="predikat">0</span>
+    </h3>
+    <h3>
+        status kelulusan : <span id="s_kelulusan">0</span>
+    </h3>
+    <h3>
+        keterangan : <span id="keterangan">0</span>
+    </h3>
+
+    
+
+
+    <script>
+        const button = document.getElementById("button");
+button.addEventListener("click", function () {
+  const pkn = document.getElementById("pkn");
+  const mtk = document.getElementById("mtk");
+  const inggris = document.getElementById("inggris");
+
+  function jumlahNilai() {
+    const total =
+      parseInt(pkn.value) + parseInt(mtk.value) + parseInt(inggris.value);
+    return total;
+  }
+
+  function rata() {
+    const totalNilai = jumlahNilai();
+    const hasil = totalNilai / 3;
+    return Math.floor(hasil);
+  }
+
+
+  function predikat() {
+    const total = rata();
+    let hasil = "";
+    if (total >= 90 && total > 100) {
+      return hasil = "A"
+    }
+    else if (total >= 80 && total <= 90) {
+      return hasil = "B";
+    }
+    else if (total >= 75 && total <= 80) {
+      return hasil = "C";
+    } else if (total < 75){
+      return hasil = "D";
+    }
+
+  }
+
+  function keterangan() {
+    const total = jumlahNilai();
+    let hasil = "";
+    if (total >= 75) {
+      hasil = "Lulus";
+    } else {
+      hasil = "tidak lulus";
+    }
+    return hasil;
+  }
+
+  const keterangann = document.getElementById("keterangan");
+  const predikatt = document.getElementById("predikat");
+  const rataaa = document.getElementById("Rata-rata");
+  const jml = document.getElementById("jml_nilai");
+  const lulus = document.getElementById("s_kelulusan");
+
+  const totalNilai = jumlahNilai();
+  const rata_rata = rata();
+  const predikat2 = predikat();
+  const keterangan2 = keterangan();
+  const lulus2 = predikat();
+
+  console.log(rataaa)
+  jml.textContent = totalNilai;
+  rataaa.textContent = rata_rata;
+  predikatt.textContent = predikat2;
+  keterangann.textContent = keterangan2;
+  lulus.textContent = lulus2;
+});
+
+    </script>
+</body>
+</html>
