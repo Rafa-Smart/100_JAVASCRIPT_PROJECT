@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persegi</title>
+</head>
+<body>
+    <center>
+        <h2>Menghitung Persegi</h2>
+        <form>
+            <label for="sisi">Sisi (cm): </label>
+            <input type="number" id="sisi">
+            <button type="button" id="hitung">Hitung</button>
+        </form>
+        <h3>Hasil Perhitungan</h3>
+        <p>Keliling: <span id="keliling"></span></p>
+        <p>Luas: <span id="luas"></span></p>
+    </center>
+
+    <script>
+        document.getElementById("hitung").addEventListener("click", function() {
+            const sisi = parseFloat(document.getElementById("sisi").value);
+            const tampilKeliling = document.getElementById("keliling");
+            const tampilLuas = document.getElementById("luas");
+
+            // Rumus Persegi
+            const keliling = 4 * sisi;
+            const luas = sisi * sisi;
+
+            tampilKeliling.innerHTML = keliling.toFixed(2) + " cm";
+            tampilLuas.innerHTML = luas.toFixed(2) + " cm<sup>2</sup>";
+        });
+    </script>
+</body>
+</html>

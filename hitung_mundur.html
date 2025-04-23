@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas</title>
+    <style>
+      body {
+        width: 50%;
+        margin: 50px auto;
+        text-align: center;
+      }
+
+      select {
+        width: 150px;
+        height: 20px;
+      }
+      button {
+        width: 70px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Piih angka 1 - 10</h1>
+    <br />
+    <h2 id="hint">hint</h2>
+    <br /><br />
+    <form action="">
+      <select name="" id="angka_pilihan">
+        <option value="">Masukan angka</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    </form>
+
+    <br />
+    <br />
+    <span> Kesempatan : <span id="sisa_pilihan"></span> </span>
+    <br /><br /><br />
+    <button id="pilihan">pilih</button>
+    <script>
+              let bantuan, angka;
+      let sisa = 3; // Inisialisasi sisa di luar fungsi
+      let random = Math.floor(Math.random() * 10) + 1;
+
+      function main() {
+          angka = parseInt(document.getElementById("angka_pilihan").value);
+
+          if (angka == random) {
+              bantuan = `Kamu benar!\nAngka pilihan komputer adalah ${random}`;
+              sisa = 0; // Reset sisa jika user menebak dengan benar
+          } else if (angka < random) {
+              bantuan = "Angka anda terlalu kecil";
+              sisa -= 1; // Kurangi sisa jika tebakan salah
+          } else if (angka > random) {
+              bantuan = "Angka anda terlalu besar";
+              sisa -= 1; // Kurangi sisa jika tebakan salah
+          }
+
+          // Jika sisa habis, tampilkan pesan waktu habis
+          if (sisa == 0 && angka != random) {
+              bantuan = `Waktu Habis\nAngka pilihan komputer adalah ${random}`;
+          }
+
+          // Perbarui tampilan di browser
+          document.getElementById("hint").textContent = bantuan;
+          document.getElementById("sisa_pilihan").textContent = sisa;
+
+          // Jika sisa habis, nonaktifkan tombol
+          if (sisa == 0) {
+              document.getElementById("pilihan").disabled = true;
+          }
+      }
+
+      document.getElementById("pilihan").onclick = main;
+
+      debugger
+      const button = document.querySelector("#hitung")
+      button.addEventListener("click", () => {
+
+          const angka = document.querySelector("#angka").value
+          counter(angka)
+          function counter(angka) {
+              counter = angka
+              setInterval(() => {
+                  if(counter === 0){
+                      alert("Waktu habis")
+                      clearInterval(counter)
+                      document.location.reload()
+                  }
+                  counter--
+                  let hasil = document.querySelector("#counter")
+                  hasil.textContent = `hitung = ${counter}`
+              },1000)
+              button.disabled = "true"
+          }
+      })
+    </script>
+  </body>
+</html>
