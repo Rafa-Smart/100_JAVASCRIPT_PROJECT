@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabung</title>
+    <style>
+    </style>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Menghitung Trapesium</h2>
+        <form action="">
+            <label for="a">a : </label>
+            <input type="number" id="a">
+            <label for="b">b : </label>
+            <input type="number" id="b">
+            <label for="c">c : </label>
+            <input type="number" id="c">
+            <label for="d">d : </label>
+            <input type="number" id="d">
+            <label for="t">t : </label>
+            <input type="number" id="t">
+            <button type="button" id="hasil">hasil</button>
+        </form>
+        <h3>hasil Perhitungan</h3>
+        <p>keliling : <span id="keliling"></span></p>
+
+        <p>luas : <span id="luas"></span></p>
+    </center>
+
+    <script>
+
+
+        hasil.addEventListener("click",function(){
+
+            const a = document.getElementById("a").value
+            const b = document.getElementById("b").value
+            const c = document.getElementById("c").value
+            const t = document.getElementById("t").value
+            const d = document.getElementById("d").value
+            const tampilKeliling = document.getElementById("keliling")
+            const tampilLuas = document.getElementById("luas")
+            const hasil = document.getElementById("hasil")
+
+            // keliling
+            let keliling = a+b+c+d
+            let luas = 21 *(a+b)*t
+            tampilKeliling.innerHTML = (Math.floor(keliling) + "cm<sup>2</sup>")
+            tampilLuas.innerHTML = (Math.floor(luas) + "cm<sup>2</sup>")
+        })
+
+    </script>
+</body>
+</html>
