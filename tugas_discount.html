@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount</title>
+    <style>
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Menghitung discount</h2>
+        <form action="">
+            <label for="harga">harga total : </label>
+            <input type="number" id="harga" placeholder="masukan harga">
+            <label for="diskon">diskon : </label>
+            <input type="number" id="diskon" placeholder="masukan diskon">
+            <button type="button" id="hasil">hasil</button>
+        </form>
+        <h3>hasil diskon</h3>
+        <p>harga setelah diskon : <span id="hasil2"></span></p>
+    </center>
+
+    <script>
+        hasil.addEventListener("click",function(){
+
+            const diskon = document.getElementById("diskon")
+            const harga = document.getElementById("harga").value;
+            const hasil = document.getElementById("hasil2")
+
+            const total = harga - (harga * diskon.value / 100)
+            hasil.textContent = `Rp.${total}`
+
+
+        })
+
+    </script>
+</body>
+</html>
