@@ -18,17 +18,17 @@
 <body>
     <div class="container">
         <h2>
-            Program Mengenkripsi data
+            Program deskripsi data
 
         </h2>
         <form action="">
-            <label for="inputan">Masukan Data anda :</label>
+            <label for="inputan">Masukan Data enkripsi anda :</label>
             <input type="text" placeholder="masukan Data..." required id="inputan"> 
             <button type="button" id="button">Kirim</button>
         </form>
         <section>
             <h3>
-                Hasil enkripsi : <span id="hasil"></span>
+                Hasil deskripsi : <span id="hasil"></span>
             </h3>
         </section>
         <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
@@ -43,8 +43,8 @@
         console.log("tessss")
 
         button.addEventListener("click", () => {
-            const hasilEnkripsi = btoa(inputan)
-            hasil.textContent = hasilEnkripsi
+            const hasilDeskripsi = atob(inputan)
+            hasil.textContent = hasilDeskripsi
         })
     </script>
 </body>
