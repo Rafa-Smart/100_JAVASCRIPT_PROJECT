@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+  </head>
+  <body>
+    <div id="timer">
+      <span id="jam">00</span> : <span id="menit">00</span> :
+      <span id="detik">00</span>
+    </div>
+    <div>
+      <span id="start"><button>Mulai</button></span>
+      <span id="stop"><button>Stop</button></span>
+      <span id="reset"><button>Reset</button></span>
+      <span id="lap"><button>Lap</button></span>
+    </div>
+    <div class="lap">
+      
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+      Dibuat pada 24/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      const divDetik = document.querySelector("#detik");
+      const divMenit = document.querySelector("#menit");
+      const divJam = document.querySelector("#jam");
+      const divMulai = document.querySelector("#start");
+      const divReset = document.querySelector("#reset");
+      const divStop = document.querySelector("#stop");
+
+      let detik = Number(divDetik.textContent);
+      let menit = Number(divMenit.textContent);
+      let jam = Number(divJam.textContent);
+
+      divMulai.addEventListener("click", function () {
+        const changeDetik = () => {
+          divStop.addEventListener("click", function () {
+            clearInterval(time);
+          });
+          divReset.addEventListener("click", function () {
+            window.location.reload();
+          });
+          detik++;
+          if (detik == 60) {
+            detik = 0;
+            menit++;
+          } else if (menit == 60) {
+            detik = 0;
+            menit = 0;
+            jam++;
+          } else if (jam == 24) {
+            detik = 0;
+            menit = 0;
+            jam = 0;
+          }
+          divDetik.textContent = detik < 10 ? `0${detik}` : detik;
+          divMenit.textContent = menit < 10 ? `0${menit}` : menit;
+          divJam.textContent = jam < 10 ? `0${jam}` : jam;
+        };
+        const time = setInterval(changeDetik, 1000);
+      });
+    </script>
+  </body>
+</html>

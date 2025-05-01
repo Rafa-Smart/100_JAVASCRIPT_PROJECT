@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menentukan Zat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #cb4e3b;
+            margin-bottom: 10px;
+        }
+        .hasil {
+            height: 3px;
+            background-color: #ae260b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #691211;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM MENENTUKAN ZAT</h1>
+    <div class="hasil"></div>
+    
+    <p>Masukkan suhu zat:</p>
+    <input type="number" id="suhu" placeholder="Masukkan suhu">
+    <button onclick="tentukanZat()">Cek Zat</button>
+    
+    <div id="hasil"></div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        function tentukanZat() {
+            const suhu = parseInt(document.getElementById("suhu").value);
+            const hasil = document.getElementById("hasil");
+            
+            if (isNaN(suhu)) {
+                hasil.textContent = "Masukkan suhu yang valid!";
+                return;
+            }
+            
+            if (suhu <= 0) {
+                hasil.textContent = "Ini adalah zat padat";
+            } else if (suhu < 100) {
+                hasil.textContent = "Ini adalah zat cair";
+            } else {
+                hasil.textContent = "Ini adalah zat uap";
+            }
+        }
+    </script>
+</body>
+</html>

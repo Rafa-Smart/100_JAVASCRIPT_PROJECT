@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>jam :<span id="jam"></span></h1>
+    <h1>menit :<span id="menit"></span></h1>
+    <h1>detik :<span id="detik"></span></h1>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+      Dibuat pada 24/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      const jam = document.getElementById("jam");
+      const menit = document.getElementById("menit");
+      const detik = document.getElementById("detik");
+
+    //   let data = 0;
+      function counter() {
+        data++;
+        if (data >= 1 && data <= 60) {
+          detik.textContent = data;
+        } else if (data >= 60 && 60 * 60) {
+          menit.textContent = data;
+        } else {
+          jam.textContent = data;
+        }
+      }
+
+      let detik2 = 0;
+      let menit2 = 0;
+      let jam2 = 0;
+
+      
+    //   let detik3 = 0;
+    //   let menit3 = 0;
+    //   let jam3 = 0;
+    //   setInterval(function () {
+    //     detik2 ++
+    //     if (detik2 >= 1 && detik2 <= 10) {
+    //       detik.textContent = `${detik2} : ${detik2 == 10 ? `${detik3++}`:`` }`;
+    //     } else if (menit2 >= 0 && menit2 < 15) {
+    //         menit2++
+    //         menit.textContent = `${menit2} : ${menit2 == 15 ? `${menit3++}`:`` }`;
+
+    //     } else {
+    //         jam2 ++
+    //         jam.textContent = `${jam2} : ${jam2 == 10 ? `${jam3++}`:`` }`;
+    //     }
+    //   }, 1000);
+
+
+
+      setInterval(function () {
+        detik2 ++
+        if (detik2 >= 1 && detik2 <= 10) {
+          detik.textContent = `${detik2}`;
+        } else if (menit2 >= 0 && menit2 < 15) {
+            menit2++
+            menit.textContent = `${menit2}`;
+
+        } else {
+            jam2 ++
+            jam.textContent = `${jam2}`;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

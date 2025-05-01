@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Perulangan Kalimat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #9c27b0;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .hasil {
+            height: 2px;
+            background-color: pink;
+            margin: 15px 0;
+            border-radius: 2px;
+        }
+        .inputan {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #620373;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #7b1fa2;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f3e5f5;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+        }
+        .hasil-item {
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM PERULANGAN KALIMAT</h1>
+    <div class="hasil"></div>
+    
+    <div class="inputan">
+        <label for="jumlah">Masukan jumlah perulangan:</label>
+        <input type="number" id="jumlah" min="1">
+    </div>
+    
+    <div class="inputan">
+        <label for="kalimat">Masukan kalimat yang ingin diulang:</label>
+        <input type="text" id="kalimat">
+    </div>
+    
+    <button onclick="ulangiKalimat()">Proses Perulangan</button>
+    
+    <div id="hasil">
+        Hasil perulangan akan muncul di sini...
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+
+    <script>
+        function ulangiKalimat() {
+
+            const jumlah = document.getElementById('jumlah').value;
+            const kalimat = document.getElementById('kalimat').value;
+            const hasilElement = document.getElementById('hasil');
+            
+            if (!jumlah || jumlah < 1) {
+                hasilElement.innerHTML = '<div style="color:red">asukin jumlah perulangannya</div>';
+                return;
+            }
+            
+            if (!kalimat.trim()) {
+                hasilElement.innerHTML = '<div style="color:red">Masukkan kalimat yang ingin diulang</div>';
+                return;
+            }
+            
+            let output = '';
+            for (let i = 0; i < jumlah; i++) {
+                output += `<div class="hasil-item">${i + 1}. ${kalimat}.</div>`;
+            }
+            
+
+            hasilElement.innerHTML = output;
+        }
+        
+        window.addEventListener("load", function(){
+            ulangiKalimat()
+        })
+    </script>
+</body>
+</html>

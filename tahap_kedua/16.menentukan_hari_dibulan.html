@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menentukan Hari dalam Bulan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #7876c2;
+            text-align: center;
+        }
+        .bulan-list {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            color: #f5f5f5;
+            padding: 10px;
+            background-color: #313e9f;
+            border-radius: 5px;
+        }
+        select, button {
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #3e2c8c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2c148d;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM MENENTUKAN HARI DALAM BULAN</h1>
+    <div class="hasil"></div>
+    
+    <div class="bulan-list">
+        <h3>Daftar Bulan dan Jumlah Harinya:</h3>
+        <ul id="daftarBulan"></ul>
+    </div>
+    
+    <div>
+        <label for="pilihBulan">Pilih bulan: </label>
+        <select id="pilihBulan">
+            <option value=""> Pilih Bulan </option>
+            <option value="januari">Januari</option>
+            <option value="februari">Februari</option>
+            <option value="maret">Maret</option>
+            <option value="april">April</option>
+            <option value="mei">Mei</option>
+            <option value="juni">Juni</option>
+            <option value="juli">Juli</option>
+            <option value="agustus">Agustus</option>
+            <option value="september">September</option>
+            <option value="oktober">Oktober</option>
+            <option value="november">November</option>
+            <option value="desember">Desember</option>
+        </select>
+        <button onclick="tampilkanHari()">Tampilkan</button>
+    </div>
+    
+    <div class="result" id="hasil">
+        Hasil akan muncul di sini...
+    </div>
+    <div class="confirmation" id="konfirmasi">
+        <p>Apakah sudah selesai?</p>
+        <button onclick="selesai()">Ya (Y)</button>
+        <button onclick="keluar()">Tidak (T)</button>
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        const menuBulan = {
+            "januari": 31,
+            "februari": 29,
+            "maret": 31,
+            "april": 30,
+            "mei": 31,
+            "juni": 30,
+            "juli": 31,
+            "agustus": 31,
+            "september": 30,
+            "oktober": 31,
+            "november": 30,
+            "desember": 31
+        };
+        
+        // membuat agar ketika halaman sudah di load maka jalankan fungisnya
+        window.addEventListener("load", function() {
+            const daftarElement = document.getElementById('daftarBulan');
+            
+            for (const [bulan, hari] of Object.entries(menuBulan)) {
+                const item = document.createElement('li');
+                item.textContent = `${bulan}: ${hari} hari`;
+                daftarElement.appendChild(item);
+            }
+        })
+
+        function tampilkanHari() {
+            const pilihan = document.getElementById('pilihBulan').value;
+            const hasilElement = document.getElementById('hasil');
+            
+            if (pilihan === "") {
+                hasilElement.textContent = "Silakan pilih bulan terlebih dahulu!";
+                return;
+            }
+            
+            const jumlahHari = menuBulan[pilihan];
+            // jadi pilihan dari user, misal januari, maka j nya akan di uppercase, terus di tambahkan dengan huruf sisanya
+            const namaBulan = pilihan.charAt(0).toUpperCase() + pilihan.slice(1);
+            
+            hasilElement.innerHTML = `<strong>${namaBulan}</strong> yang Anda pilih memiliki <strong>${jumlahHari} hari</strong>`;
+        }
+        function selesai() {
+            document.getElementById("konfirmasi").style.display = "none";
+            document.getElementById("nama").value = "";
+            document.getElementById("hasil").textContent = "";
+        }
+        
+        function keluar() {
+            document.getElementById("hasil").textContent = "TERIMA KASIH";
+                document.getElementById("nama").value = "";
+                document.getElementById("hasil").textContent = "";
+                document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

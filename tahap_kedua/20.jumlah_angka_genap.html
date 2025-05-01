@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Hitung Angka Genap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .hasil {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM JUMLAH MENGHITUNG ANGKA GENAP</h1>
+    <div class="hasil"></div>
+    
+    <p>Masukkan angka maksimal:</p>
+    <input type="number" id="angka" placeholder="Masukkan angka" min="1">
+    <button onclick="hitungGenap()">Hitung</button>
+    
+    <div id="hasil"></div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        function hitungGenap() {
+            const angka = parseInt(document.getElementById("angka").value);
+            const hasilElement = document.getElementById("hasil");
+            
+            if (isNaN(angka) || angka < 1) {
+                hasilElement.textContent = "Masukkan angkanya bang";
+                return;
+            }
+            
+            let jumlah = 0;
+            let i = 0;
+            while(i <= angka){
+                if(i % 2 === 0){
+                    jumlah ++
+                }
+                i++
+            }
+            
+            hasilElement.textContent = `Hasil penjumlahan angka genap dari 1 sampai ${angka} adalah: ${jumlah}`;
+        }
+    </script>
+</body>
+</html>

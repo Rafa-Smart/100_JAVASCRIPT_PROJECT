@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJuz Al-Qur'an</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f9ff;
+            text-align: center;
+        }
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, #1a73e8, #4285f4);
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        input {
+            padding: 12px;
+            width: 100%;
+            margin: 15px 0;
+            border: 2px solid #1a73e8;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0d5bcd;
+        }
+        #hasil {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f0fe;
+            border-radius: 10px;
+            font-size: 18px;
+            color: #202124;
+        }
+        .confirmation {
+            margin-top: 20px;
+            display: none;
+        }
+        .error {
+            color: #d93025;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>PENENTU JUZ AL-QUR'AN</h1>
+    <div class="divider"></div>
+    
+    <p>Masukkan nomor halaman (1-604):</p>
+    <input type="number" id="halaman" placeholder="Contoh: 25" min="1" max="604">
+    
+    <button onclick="tentuinJuz()">Tentukan Juz</button>
+    
+    <div id="hasil"></div>
+    
+    <div class="confirmation" id="konfirmasi">
+        <p>Apakah sudah selesai?</p>
+        <button onclick="lanjutkan()">Lanjut (T)</button>
+        <button onclick="selesai()">Selesai (Y)</button>
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        function tentuinJuz() {
+            const halaman = parseInt(document.getElementById("halaman").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (isNaN(halaman) || halaman < 1 || halaman > 604) {
+                hasilElement.innerHTML = '<span class="error">Masukkan nomor halaman antara 1-604</span>';
+                return;
+            }
+            
+            let juz = 0;
+            
+            if (halaman <= 20) juz = 1;
+            else if (halaman <= 40) juz = 2;
+            else if (halaman <= 60) juz = 3;
+            else if (halaman <= 80) juz = 4;
+            else if (halaman <= 100) juz = 5;
+            else if (halaman <= 120) juz = 6;
+            else if (halaman <= 140) juz = 7;
+            else if (halaman <= 160) juz = 8;
+            else if (halaman <= 180) juz = 9;
+            else if (halaman <= 200) juz = 10;
+            else if (halaman <= 220) juz = 11;
+            else if (halaman <= 240) juz = 12;
+            else if (halaman <= 260) juz = 13;
+            else if (halaman <= 280) juz = 14;
+            else if (halaman <= 300) juz = 15;
+            else if (halaman <= 320) juz = 16;
+            else if (halaman <= 340) juz = 17;
+            else if (halaman <= 360) juz = 18;
+            else if (halaman <= 380) juz = 19;
+            else if (halaman <= 400) juz = 20;
+            else if (halaman <= 420) juz = 21;
+            else if (halaman <= 440) juz = 22;
+            else if (halaman <= 460) juz = 23;
+            else if (halaman <= 480) juz = 24;
+            else if (halaman <= 500) juz = 25;
+            else if (halaman <= 520) juz = 26;
+            else if (halaman <= 540) juz = 27;
+            else if (halaman <= 560) juz = 28;
+            else if (halaman <= 580) juz = 29;
+            else juz = 30;
+            
+            hasilElement.innerHTML = `Halaman <strong>${halaman}</strong> termasuk dalam <strong style="color:#1a73e8">Juz ${juz}</strong>`;
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function lanjutkan() {
+            document.getElementById("halaman").value = "";
+            document.getElementById("hasil").textContent = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+        
+        function selesai() {
+            const hasilElement = document.getElementById("hasil");
+            hasilElement.innerHTML = '<span style="color:#1a73e8;font-weight:bold">TERIMA KASIH</span>';
+            
+            setTimeout(() => {
+                document.getElementById("halaman").value = "";
+                hasilElement.textContent = "";
+                document.getElementById("konfirmasi").style.display = "none";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

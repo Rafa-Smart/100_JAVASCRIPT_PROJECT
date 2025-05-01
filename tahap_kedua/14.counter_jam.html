@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="jam-digital" style="font-weight: bold; font-size: xx-large;">
+        <span id="jam">00 :</span>
+        <span id="menit"> 00 :</span>
+        <span id="detik"> 00</span>
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+      Dibuat pada 24/04/2025 oleh Rafa Khadafi
+  </div>
+    <script>
+      let jam = 0;
+      let menit = 0;
+      let detik = 0;
+
+      function jamDigital() {
+        detik++;
+        if (detik === 60) {
+          detik = 0;
+          menit++;
+        }
+        if (menit === 60) {
+          menit = 0;
+          jam++;
+        }
+        const tampilJam = jam.toString().padStart(2, "0");
+        const tampilMenit = menit.toString().padStart(2, "0");
+        const tampilDetik = detik.toString().padStart(2, "0");
+        // const tampilJam = jam.toString();
+        // const tampilMenit = menit.toString();
+        // const tampilDetik = detik.toString();
+
+        document.getElementById(
+          "jam-digital"
+        ).textContent = `${tampilJam} : ${tampilMenit} : ${tampilDetik}`;
+      }
+
+      setInterval(jamDigital, 1000);
+    </script>
+  </body>
+</html>

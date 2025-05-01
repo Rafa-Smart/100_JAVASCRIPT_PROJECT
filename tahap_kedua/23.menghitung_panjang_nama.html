@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Hitung Panjang Nama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #3e2ba8;
+            margin-bottom: 10px;
+        }
+        .divider {
+            height: 3px;
+            background-color: #7438d3;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #3f25d3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .confirmation {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM MENGHITUNG PANJANG NAMA</h1>
+    <div class="divider"></div>
+    
+    <p>Masukkan nama Anda:</p>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+    <button onclick="hitungPanjang()">Hitung</button>
+    
+    <div id="hasil"></div>
+    
+    <div class="confirmation" id="konfirmasi">
+        <p>Apakah sudah selesai?</p>
+        <button onclick="selesai()">Ya (Y)</button>
+        <button onclick="keluar()">Tidak (T)</button>
+    </div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        function hitungPanjang() {
+            const nama = document.getElementById("nama").value.trim();
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (!nama) {
+                hasilElement.textContent = "Masukkan nama terlebih dahulu!";
+                return;
+            }
+            
+            const panjang = nama.length;
+            hasilElement.textContent = `Panjang nama Anda adalah: ${panjang} karakter`;
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function selesai() {
+            document.getElementById("konfirmasi").style.display = "none";
+            document.getElementById("nama").value = "";
+            document.getElementById("hasil").textContent = "";
+        }
+        
+        function keluar() {
+            document.getElementById("hasil").textContent = "TERIMA KASIH";
+                document.getElementById("nama").value = "";
+                document.getElementById("hasil").textContent = "";
+                document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

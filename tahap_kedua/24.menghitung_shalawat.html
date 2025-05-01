@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghitung Sholawat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        h1 {
+            color: #1e90ff;
+            margin-bottom: 10px;
+        }
+        .hasil {
+            height: 3px;
+            background: linear-gradient(90deg, #1e90ff, #15b0e3);
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        select, input {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+            border: 1px solid #1e90ff;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0066cc;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e6f2ff;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>PROGRAM PENGHITUNG SHOLAWAT</h1>
+    <div class="hasil"></div>
+    
+    <p>Pilih periode waktu:</p>
+    <select id="periode">
+        <option value="">-- Pilih Periode --</option>
+        <option value="minggu">Minggu</option>
+        <option value="bulan">Bulan</option>
+        <option value="tahun">Tahun</option>
+    </select>
+    
+    <p>Jumlah sholawat perhari:</p>
+    <input type="number" id="jumlah" placeholder="Masukkan jumlah" min="1">
+    
+    <button onclick="hitungSholawat()">Hitung</button>
+    
+    <div id="hasil"></div>
+    
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 24/04/2025 oleh Rafa Khadafi
+    </div>
+    <script>
+        function hitungSholawat() {
+            const periode = document.getElementById("periode").value;
+            const jumlah = parseInt(document.getElementById("jumlah").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (!periode) {
+                hasilElement.textContent = "Pilih dulu periodenya";
+                return;
+            }
+            
+            if (isNaN(jumlah) || jumlah < 1) {
+                hasilElement.textContent = "Masukkan masukan jumlah yang bener";
+                return;
+            }
+            
+            let total = 0;
+            let keterangan = "";
+            
+            switch(periode) {
+                case "minggu":
+                    total = jumlah * 7;
+                    keterangan = "minggu";
+                    break;
+                case "bulan":
+                    total = jumlah * 30;
+                    keterangan = "bulan";
+                    break;
+                case "tahun":
+                    total = jumlah * 365;
+                    keterangan = "tahun";
+                    break;
+            }
+            
+            hasilElement.innerHTML = `Anda telah bersholawat kepada Nabi sebanyak:<br><strong>${total} sholawat</strong> per ${keterangan}\nMasyaallah❤️`;
+            konfirmasiElement.style.display = "block";
+        }
+        
+
+    </script>
+</body>
+</html>
