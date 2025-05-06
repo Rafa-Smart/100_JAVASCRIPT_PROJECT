@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Niat Sholat Fardhu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        select {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 18px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+            text-align: center;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+        .arabic {
+            font-size: 24px;
+            direction: rtl;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        .sholat-list {
+            text-align: left;
+            margin: 15px 0;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM NIAT SHOLAT FARDHU</h1>
+    <div class="garis"></div>
+    
+    <p>Pilih sholat fardhu:</p>
+    <div class="sholat-list">
+        <p><strong>1. Shubuh</strong> (2 rakaat)</p>
+        <p><strong>2. Dzuhur</strong> (4 rakaat)</p>
+        <p><strong>3. Ashar</strong> (4 rakaat)</p>
+        <p><strong>4. Magrib</strong> (3 rakaat)</p>
+        <p><strong>5. Isya</strong> (4 rakaat)</p>
+    </div>
+    
+    <select id="sholat">
+        <option value="">-- Pilih Sholat --</option>
+        <option value="shubuh">Shubuh</option>
+        <option value="dzuhur">Dzuhur</option>
+        <option value="ashar">Ashar</option>
+        <option value="magrib">Magrib</option>
+        <option value="isya">Isya</option>
+    </select>
+    
+    <button onclick="tampilkanNiat()">Tampilkan Niat</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 26/10/2024 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        const niatSholat = {
+            "shubuh": "نويت أن أصلي فرض الصبح ركعتين، متوجهًا إلى القبلة، لله تعالى",
+            "dzuhur": "نويت أن أصلي فرض الظهر أربع ركعات، متوجهًا إلى القبلة، لله تعالى",
+            "ashar": "نويت أن أصلي فرض العصر أربع ركعات، متوجهًا إلى القبلة، لله تعالى",
+            "magrib": "نويت أن أصلي فرض المغرب ثلاث ركعات، متوجهًا إلى القبلة، لله تعالى",
+            "isya": "نويت أن أصلي فرض العشاء أربع ركعات، متوجهًا إلى القبلة، لله تعالى"
+        };
+        
+        function tampilkanNiat() {
+            const sholat = document.getElementById("sholat").value;
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (!sholat) {
+                hasilElement.innerHTML = `<p class="error">Silakan pilih sholat terlebih dahulu!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            const niat = niatSholat[sholat];
+            const namaSholat = sholat.charAt(0).toUpperCase() + sholat.slice(1);
+            
+            hasilElement.innerHTML = `
+                <p>Niat sholat ${namaSholat}:</p>
+                <div class="arabic">${niat}</div>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("sholat").value = "";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

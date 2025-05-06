@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Hitung Biaya Listrik</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .hasil {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PROGRAM MENENTUKAN BIAYA LISTRIK PER BULAN</h1>
+    <div class="hasil"></div>
+    
+    <p>Berapa bulan yang Anda inginkan:</p>
+    <input type="number" id="bulan" placeholder="Masukkan jumlah bulan" min="1" max="12">
+    
+    <p>Masukkan besar daya (watt):</p>
+    <input type="number" id="daya" placeholder="Masukkan daya listrik" min="1">
+    
+    <p>Berapa total jam pemakaian per bulan:</p>
+    <input type="number" id="waktu" placeholder="Masukkan jam pemakaian" min="1">
+    
+    <button onclick="hitungBiaya()">Hitung</button>
+    
+    <div id="hasil"></div>
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 3/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        const TARIF = 1500; // Tarif per kWh
+        
+        function hitungBiaya() {
+            const bulan = parseFloat(document.getElementById("bulan").value);
+            const daya = parseFloat(document.getElementById("daya").value);
+            const waktu = parseFloat(document.getElementById("waktu").value);
+            const hasilElement = document.getElementById("hasil");
+            
+            if (isNaN(bulan) || isNaN(daya) || isNaN(waktu) || bulan < 1 || daya < 1 || waktu < 1) {
+                hasilElement.textContent = "Masukkan input yang valid (bilangan positif)";
+                return;
+            }
+            
+            // Biaya Listrik = Daya (kW) × Waktu (jam) × Tarif (per kWh) × 30 hari × jumlah bulan
+            const biayaListrik = (daya / 1000) * waktu * TARIF * 30 * bulan;
+            
+            hasilElement.textContent = `Biaya listrik rumah Anda selama ${bulan} bulan = Rp${biayaListrik.toFixed(2)}`;
+            
+            const ulangi = confirm(`Biaya listrik: Rp${biayaListrik.toFixed(2)}\n\nmau lagi?`);
+            if (!ulangi) { //kalo tidak
+                hasilElement.textContent += "\n\nTerima kasih, program selesai.";
+                // Disable tombol hitung setelah selesai
+                document.querySelector("button").disabled = true;
+            } else { // kalo mau
+                document.getElementById("bulan").value = "";
+                document.getElementById("daya").value = "";
+                document.getElementById("waktu").value = "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Cek Tahun Kabisat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #009200;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            min-height: 60px;
+        }
+        .kabisat {
+            color: #009200;
+        }
+        .bukan-kabisat {
+            color: #b82a2a;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM CEK TAHUN KABISAT</h1>
+    <div class="garis"></div>
+    
+    <p>Masukkan tahun yang ingin dicek:</p>
+    <input type="number" id="tahunInput" placeholder="Masukkan tahun" min="1">
+    
+    <button onclick="cekKabisat()">Cek Tahun</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Cek Tahun Lain</button>
+    </div>
+    
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 3/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        function isKabisat(tahun) {
+            return (tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0);
+        }
+        
+        function cekKabisat() {
+            const tahunInput = parseInt(document.getElementById("tahunInput").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (isNaN(tahunInput) || tahunInput < 1) {
+                hasilElement.textContent = "Masukkan tahun yang valid (bilangan bulat positif)";
+                hasilElement.className = "";
+                return;
+            }
+            
+            if (isKabisat(tahunInput)) {
+                hasilElement.innerHTML = `Tahun <span class="kabisat">${tahunInput}</span> adalah <span class="kabisat">TAHUN KABISAT</span>`;
+                hasilElement.className = "kabisat";
+            } else {
+                hasilElement.innerHTML = `Tahun <span class="bukan-kabisat">${tahunInput}</span> adalah <span class="bukan-kabisat">BUKAN TAHUN KABISAT</span>`;
+                hasilElement.className = "bukan-kabisat";
+            }
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("tahunInput").value = "";
+            document.getElementById("hasil").className = "";
+            document.getElementById("konfirmasi").style.display = "none";
+            document.getElementById("tahunInput").focus(); // biar bisa langsung ngetik tahun lagi, dan fokus ke inputannya
+        }
+    </script>
+</body>
+</html>

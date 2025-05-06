@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Konversi Satuan Meter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 16px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+            text-align: left;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+        .satuan {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM KONVERSI SATUAN METER</h1>
+    <div class="garis"></div>
+    
+    <p>Masukkan nilai dalam meter:</p>
+    <input type="number" id="meter" min="0" placeholder="Masukkan angka dalam meter">
+    
+    <button onclick="hitungKonversi()">Konversi</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 05/11/2024 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        function hitungKonversi() {
+            const inputMeter = document.getElementById("meter").value;
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            // Validasi input
+            if (!inputMeter || inputMeter < 0) {
+                hasilElement.innerHTML = `<p class="error">Masukkan nilai meter yang valid (bilangan positif)!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            const meter = parseFloat(inputMeter);
+            const millimeter = meter * 1000;
+            const centimeter = meter * 100;
+            const dekameter = meter / 10;
+            const hektometer = meter / 100;
+            const kilometer = meter / 1000;
+            
+            hasilElement.innerHTML = `
+                <p>Hasil konversi ${meter} meter:</p>
+                <div class="satuan"><strong>Milimeter:</strong> ${millimeter} mm</div>
+                <div class="satuan"><strong>Sentimeter:</strong> ${centimeter} cm</div>
+                <div class="satuan"><strong>Dekameter:</strong> ${dekameter.toFixed(2)} dam</div>
+                <div class="satuan"><strong>Hektometer:</strong> ${hektometer.toFixed(2)} hm</div>
+                <div class="satuan"><strong>Kilometer:</strong> ${kilometer.toFixed(4)} km</div>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("meter").value = "";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

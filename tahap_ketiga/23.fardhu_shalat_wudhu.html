@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Fardhu Sholat dan Wudhu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 16px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+            text-align: left;
+            white-space: pre-line;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+        .pilihan {
+            margin: 10px 0;
+            padding: 8px;
+            background-color: #f0f0f0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .pilihan:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM FARDHU SHOLAT DAN WUDHU</h1>
+    <div class="garis"></div>
+    
+    <div id="menu-utama">
+        <p>Pilih salah satu:</p>
+        <div class="pilihan" onclick="tampilkanFardhu('sholat')">1. Sholat</div>
+        <div class="pilihan" onclick="tampilkanFardhu('wudhu')">2. Wudhu</div>
+    </div>
+    
+    <div id="hasil"></div>
+    
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+        <button onclick="keluarProgram()">Keluar</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 26/10/2024 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        function tampilkanFardhu(pilihan) {
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            const menuUtama = document.getElementById("menu-utama");
+            
+            menuUtama.style.display = "none";
+            konfirmasiElement.style.display = "block";
+            
+            if (pilihan === "sholat") {
+                hasilElement.innerHTML = `
+Fardhu Sholat adalah:
+1. Niat
+2. Berdiri bagi yang mampu
+3. Takbiratul ikhram
+4. Membaca Al-Fatihah
+5. Rukuk dengan tuma'ninah
+6. I'tidal dengan tuma'ninah
+7. Sujud dengan tuma'ninah
+8. Duduk diantara 2 sujud dengan tuma'ninah
+9. Duduk tahiyyat akhir
+10. Membaca doa tahiyya akhir
+11. Membaca sholawat kepada Nabi Muhammad SAW
+12. Salam
+13. Tertib
+                `;
+            } else if (pilihan === "wudhu") {
+                hasilElement.innerHTML = `
+Fardhu Wudhu adalah:
+1. Niat
+2. Membasuh seluruh wajah
+3. Membasuh kedua tangan sampai siku-siku
+4. Mengusap sebagian kepala
+5. Membasuh kaki sampai mata kaki
+6. Tertib
+                `;
+            } else {
+                hasilElement.innerHTML = `<p class="error">Pilihan anda belum tersedia</p>`;
+            }
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("menu-utama").style.display = "block";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+        
+
+
+        function keluarProgram() {
+            document.getElementById("hasil").innerHTML = "TERIMA KASIH";
+            setTimeout(() => {
+                document.getElementById("konfirmasi").style.display = "none";
+                ulangiProgram();
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

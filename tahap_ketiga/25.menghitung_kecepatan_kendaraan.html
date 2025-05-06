@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menentukan Telat Sekolah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 16px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+            text-align: left;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+        .success {
+            color: #2ab82a;
+        }
+        .warning {
+            color: #b88a2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM MENENTUKAN TELAT SEKOLAH</h1>
+    <div class="garis"></div>
+    
+    <div id="input-section">
+        <p>Masukkan data perjalanan:</p>
+        <input type="number" id="waktu-berangkat" step="0.1" min="0" placeholder="Waktu berangkat (jam)">
+        <input type="number" id="jarak" step="0.1" min="0" placeholder="Jarak ke sekolah (meter)">
+        <input type="number" id="kecepatan" step="0.1" min="0" placeholder="Kecepatan (meter/detik)">
+        
+        <button onclick="hitungTelat()">Periksa</button>
+    </div>
+    
+    <div id="hasil"></div>
+    
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+        <button onclick="keluarProgram()">Keluar</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 25/10/2024 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        const JAM_MASUK = 7.0; // Jam 7 pagi
+        
+        function hitungTelat() {
+            const waktuBerangkat = parseFloat(document.getElementById("waktu-berangkat").value);
+            const jarak = parseFloat(document.getElementById("jarak").value);
+            const kecepatan = parseFloat(document.getElementById("kecepatan").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            // Validasi input
+            if (isNaN(waktuBerangkat)) {
+                hasilElement.innerHTML = `<p class="error">Masukkan waktu berangkat yang valid!</p>`;
+                return;
+            }
+            if (isNaN(jarak) || jarak <= 0) {
+                hasilElement.innerHTML = `<p class="error">Masukkan jarak yang valid (bilangan positif)!</p>`;
+                return;
+            }
+            if (isNaN(kecepatan) || kecepatan <= 0) {
+                hasilElement.innerHTML = `<p class="error">Masukkan kecepatan yang valid (bilangan positif)!</p>`;
+                return;
+            }
+            
+            // Hitung waktu perjalanan (dalam jam)
+            const waktuPerjalananJam = (jarak / kecepatan) / 3600;
+            const waktuSampai = waktuBerangkat + waktuPerjalananJam;
+            
+            // Tampilkan hasil
+            if (waktuSampai < JAM_MASUK) {
+                const sisaWaktu = (JAM_MASUK - waktuSampai) * 60; // Konversi ke menit
+                hasilElement.innerHTML = `
+                    <p class="success">Anda tidak telat</p>
+                    <p>Sisa waktu kamu ${sisaWaktu.toFixed(2)} menit</p>
+                    <p>Buku kuning kamu aman</p>
+                `;
+            } else if (waktuSampai.toFixed(2) == JAM_MASUK.toFixed(2)) {
+                hasilElement.innerHTML = `<p class="warning">Kamu hoki bangettt</p>`;
+            } else {
+                const waktuTelat = (waktuSampai - JAM_MASUK) * 60; // Konversi ke menit
+                hasilElement.innerHTML = `
+                    <p class="error">Yahh kamu terlambatt</p>
+                    <p>Kamu telat ${waktuTelat.toFixed(2)} menit</p>
+                `;
+            }
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("waktu-berangkat").value = "";
+            document.getElementById("jarak").value = "";
+            document.getElementById("kecepatan").value = "";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+        
+        function keluarProgram() {
+            document.getElementById("hasil").innerHTML = "<p>TERIMA KASIH</p>";
+            setTimeout(() => {
+                ulangiProgram();
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

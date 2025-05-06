@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Konversi Angka ke Romawi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+        }
+        .romawi {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #2a36b8;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM KONVERSI ANGKA KE ROMAWI</h1>
+    <div class="garis"></div>
+    
+    <p>Masukkan angka (1-10):</p>
+    <input type="number" id="angka" min="1" max="10" placeholder="Masukkan angka integer">
+    
+    <button onclick="konversiRomawi()">Konversi</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 08/10/2024 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        const angkaRomawi = {
+            1: "I",
+            2: "II",
+            3: "III",
+            4: "IV",
+            5: "V",
+            6: "VI",
+            7: "VII",
+            8: "VIII",
+            9: "IX",
+            10: "X"
+        };
+        
+        function konversiRomawi() {
+            const input = document.getElementById("angka").value;
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            const angka = parseInt(input);
+            
+            if (isNaN(angka)) {
+                hasilElement.innerHTML = `<p class="error">Masukkan angka yang valid!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            if (angka < 1 || angka > 10) {
+                hasilElement.innerHTML = `<p class="error">Masukkan angka antara 1-10!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            const hasilKonversi = angkaRomawi[angka];
+            hasilElement.innerHTML = `
+                <p>Angka ${angka} dalam Romawi:</p>
+                <div class="romawi">${hasilKonversi}</div>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("angka").value = "";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

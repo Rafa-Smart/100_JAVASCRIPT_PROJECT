@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Hitung Waktu Tempuh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM MENGHITUNG WAKTU TEMPUH</h1>
+    <div class="garis"></div>
+    
+    <p>Masukkan jarak perjalanan (meter):</p>
+    <input type="number" id="jarak" placeholder="Dalam satuan meter" min="1">
+    
+    <p>Masukkan kecepatan kendaraan (m/s):</p>
+    <input type="number" id="kecepatan" placeholder="Dalam satuan m/s" min="1">
+    
+    <button onclick="hitungWaktu()">Hitung</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <p>Apakah masih mau lagi?</p>
+        <button onclick="ulangiProgram()">Ya (y)</button>
+        <button onclick="akhiriProgram()">Tidak (t)</button>
+    </div>
+    
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 3/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        function hitungWaktu() {
+            const jarak = parseInt(document.getElementById("jarak").value);
+            const kecepatan = parseInt(document.getElementById("kecepatan").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (isNaN(jarak) || isNaN(kecepatan) || jarak < 1 || kecepatan < 1) {
+                hasilElement.textContent = "Masukkan input yang valid (bilangan bulat positif)";
+                return;
+            }
+            
+            // Hitung waktu dalam detik, lalu konversi ke menit
+            const waktuDetik = jarak / kecepatan;
+            const waktuMenit = waktuDetik / 60;
+            
+            hasilElement.textContent = `Waktu yang Anda perlukan untuk sampai ke tujuan: ${waktuMenit.toFixed(2)} menit`;
+            
+            // Tampilkan tombol konfirmasi
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            // Kosongkan input dan sembunyikan tombol konfirmasi
+            document.getElementById("jarak").value = "";
+            document.getElementById("kecepatan").value = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+        
+        function akhiriProgram() {
+            const hasilElement = document.getElementById("hasil");
+            hasilElement.textContent += "\n\nTerima kasih! Program selesai.";
+            document.getElementById("konfirmasi").style.display = "none";
+            document.querySelector("button").disabled = true;
+        }
+    </script>
+</body>
+</html>

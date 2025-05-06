@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Konversi Temperatur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: left;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .satuan {
+            color: #2a36b8;
+            font-weight: bold;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM KONVERSI TEMPERATUR</h1>
+    <div class="garis"></div>
+    
+    <p>Masukkan suhu dalam Celcius:</p>
+    <input type="number" id="celciusInput" placeholder="Masukkan suhu" step="0.1">
+    
+    <button onclick="konversiSuhu()">Konversi</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Konversi Lagi</button>
+    </div>
+    
+    <div class="footer" style="font-size: 12px; color:#666; margin-top: 30px;">
+        Dibuat pada 3/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        function konversiSuhu() {
+            const celcius = parseFloat(document.getElementById("celciusInput").value);
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (isNaN(celcius)) {
+                hasilElement.innerHTML = "Masukkan suhu yang valid";
+                return;
+            }
+            
+            // Konversi suhu
+            const reamur = (4/5) * celcius;
+            const fahrenheit = ((9/5) * celcius) + 32;
+            const kelvin = celcius + 273;
+            
+            hasilElement.innerHTML = `
+                <p>Suhu Celcius = <span class="satuan">${celcius.toFixed(2)} °C</span></p>
+                <p>Suhu Reamur = <span class="satuan">${reamur.toFixed(2)} °R</span></p>
+                <p>Suhu Fahrenheit = <span class="satuan">${fahrenheit.toFixed(2)} °F</span></p>
+                <p>Suhu Kelvin = <span class="satuan">${kelvin.toFixed(2)} K</span></p>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("celciusInput").value = "";
+            document.getElementById("konfirmasi").style.display = "none";
+            document.getElementById("celciusInput").focus();
+        }
+    </script>
+</body>
+</html>
