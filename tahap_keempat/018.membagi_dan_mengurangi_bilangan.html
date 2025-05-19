@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Sinus ke Pecahan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        select {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        label {
+            display: block;
+            margin-top: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #220991;
+        }
+
+        input {
+            border-radius: 5px;
+            height: 25px;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+        }
+        .pecahan {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM MEMBAGI DAN MENGURANGI BILANGAN</h1>
+    <div class="garis"></div>
+
+    <label for="angka1">angka 1 :</label>
+    <input type="number" placeholder="masukan angka 1" min="1" id="angka1">
+    <label for="angka2" >angka 2 :</label>
+    <input type="number" id="angka2" placeholder="masukan angka 2" min="1">
+    <label for="angka3" >angka 3 :</label>
+    <input type="number" id="angka3" placeholder="masukan angka 3" min="1">
+    
+    <p>Pilih Metode 1 :</p>
+    <select id="method1">
+        <option value="0">--pilih--</option>
+        <option value="/">bagi</option>
+    </select>
+    <div class="garis"></div>
+    <p>Pilih Metode 2 :</p>
+    <select id="method2">
+        <option value="0">--pilih--</option>
+        <option value="-">kurang</option>
+    </select>
+    
+    <button onclick="hitung()">Hitung</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 07/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        
+        function hitung() {
+            const pilihan1 = document.getElementById("method1").value;
+            const pilihan2 = document.getElementById("method2").value;
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            const angka1 = document.getElementById("angka1").value
+            const angka2 = document.getElementById("angka2").value
+            const angka3 = document.getElementById("angka3").value
+            
+            const hasil = eval(angka1 + pilihan1 + angka2 + pilihan2 + angka3)
+            hasilElement.innerHTML = `
+                <p>hasil membagi dan mengurangi ${angka1} / ${angka2} - ${angka3} =</p>
+                <div class="pecahan">${hasil}</div>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>

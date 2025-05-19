@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Menghitung Upah Kerja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2a36b8;
+            margin-bottom: 10px;
+        }
+        .garis {
+            height: 3px;
+            background-color: #0c1b8b;
+            margin: 10px 0;
+        }
+        select, input {
+            padding: 8px;
+            width: 100%;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #220991;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #hasil {
+            margin-top: 20px;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-height: 60px;
+        }
+        .upah {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #2a36b8;
+        }
+        .footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 30px;
+        }
+        .error {
+            color: #b82a2a;
+            font-style: italic;
+        }
+        .golongan-list {
+            text-align: left;
+            margin: 15px 0;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="garis"></div>
+    <h1>PROGRAM MENGHITUNG UPAH PROGRAMMERS</h1>
+    <div class="garis"></div>
+    
+    <p>Golongan pekerjaan dan upah per jam:</p>
+    <div class="golongan-list">
+        <p><strong>backEnd</strong>: Rp9.000/jam</p>
+        <p><strong>frontEnd</strong>: Rp7.000/jam</p>
+        <p><strong>productManager</strong>: Rp8.000/jam</p>
+        <p><strong>devOps</strong>: Rp5.000/jam</p>
+    </div>
+    
+    <p>Pilih golongan pekerjaan anda:</p>
+    <select id="golongan">
+        <option value="">-- Pilih Golongan --</option>
+        <option value="backEnd">backEnd</option>
+        <option value="frontend">frontEnd</option>
+        <option value="productManager">productManager</option>
+        <option value="devOps">devOps</option>
+    </select>
+    
+    <p>Masukkan durasi bekerja (jam):</p>
+    <input type="number" id="jam" min="1" placeholder="Masukkan jam kerja">
+    
+    <button onclick="hitungUpah()">Hitung Upah</button>
+    
+    <div id="hasil"></div>
+    <div id="konfirmasi" style="display: none; margin-top: 20px;">
+        <button onclick="ulangiProgram()">Ulangi</button>
+    </div>
+    
+    <div class="footer">
+        Dibuat pada 08/05/2025 oleh Rafa Khadafi
+    </div>
+    
+    <script>
+        const golonganKerja = {
+            "backEnd": 9000,
+            "frontend": 7000,
+            "productManager": 8000,
+            "devOps": 5000
+        };
+        
+        function hitungUpah() {
+            const golongan = document.getElementById("golongan").value;
+            const jam = document.getElementById("jam").value;
+            const hasilElement = document.getElementById("hasil");
+            const konfirmasiElement = document.getElementById("konfirmasi");
+            
+            if (!golongan) {
+                hasilElement.innerHTML = `<p class="error">Silakan pilih golongan pekerjaan!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            if (!jam || jam < 1) {
+                hasilElement.innerHTML = `<p class="error">Masukkan jam kerja yang valid (minimal 1 jam)!</p>`;
+                konfirmasiElement.style.display = "block";
+                return;
+            }
+            
+            const upahPerJam = golonganKerja[golongan];
+            const totalUpah = upahPerJam * jam;
+            
+            const formatter = new Intl.NumberFormat('id-ID');
+            const upahFormatted = formatter.format(totalUpah);
+            
+            hasilElement.innerHTML = `
+                <p>Upah anda adalah:</p>
+                <div class="upah">Rp${upahFormatted}</div>
+                <p>(${golongan.charAt(0).toUpperCase() + golongan.slice(1)} × ${jam} jam)</p>
+            `;
+            
+            konfirmasiElement.style.display = "block";
+        }
+        
+        function ulangiProgram() {
+            document.getElementById("golongan").value = "";
+            document.getElementById("jam").value = "";
+            document.getElementById("hasil").innerHTML = "";
+            document.getElementById("konfirmasi").style.display = "none";
+        }
+    </script>
+</body>
+</html>
